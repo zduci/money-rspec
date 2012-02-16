@@ -1,12 +1,12 @@
-class Dollar
-  attr_accessor :amount
+require './money'
+class Dollar < Money
 
   def initialize(amount)
     @amount = amount
   end
 
   def times(multiplier)
-    Dollar.new(amount * multiplier)
+    Money.new(amount * multiplier)
   end
   
   def ==(amount)
