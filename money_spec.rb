@@ -1,4 +1,5 @@
 require './dollar'
+require './franc'
 
 describe Dollar do
   it 'correctly multiplies by anything' do
@@ -13,3 +14,11 @@ describe Dollar do
     dollar.should_not == Dollar.new(6)
   end
 end
+
+describe Franc do
+  it 'correctly multiplies by anything' do 
+    franc = Franc.new 5
+    franc.times(2) == Franc.new(10)
+    franc.times(3) == Franc.new(15) 
+  end
+end   
