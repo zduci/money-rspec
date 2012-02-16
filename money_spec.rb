@@ -21,4 +21,10 @@ describe Franc do
     franc.times(2) == Franc.new(10)
     franc.times(3) == Franc.new(15) 
   end
-end   
+end  
+
+describe Dollar, Franc do
+  it 'should distinguish dollars from francs' do
+    Dollar.new(5).should_not == Franc.new(5)
+  end
+end 
