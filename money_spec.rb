@@ -2,31 +2,43 @@ require './dollar'
 require './franc'
 
 describe Dollar do
+  before :all do
+    @dollar = Money.dollar 5
+  end
+
   it 'correctly multiplies by anything' do
-    dollar = Money.dollar 5
-    dollar.times(2) == Money.dollar(10)
-    dollar.times(3) == Money.dollar(15) 
+    @dollar.times(2) == Money.dollar(10)
+    @dollar.times(3) == Money.dollar(15) 
   end
   
   it 'does equality' do 
-    dollar = Money.dollar 5
-    dollar.should == Money.dollar(5)
-    dollar.should_not == Money.dollar(6)
+    @dollar.should == Money.dollar(5)
+    @dollar.should_not == Money.dollar(6)
   end
+  
+  it 'returns the correct currency' do
+    @dollar.currency.should be :USD
+  end 
 end
 
 describe Franc do
+  before :all do
+    @franc = Money.franc 5
+  end
+ 
   it 'correctly multiplies by anything' do 
-    franc = Money.franc 5
-    franc.times(2) == Money.franc(10)
-    franc.times(3) == Money.franc(15) 
+    @franc.times(2) == Money.franc(10)
+    @franc.times(3) == Money.franc(15) 
   end
 
   it 'does equality' do 
-    dollar = Money.franc 5
-    dollar.should == Money.franc(5)
-    dollar.should_not == Money.franc(6)
+    @franc.should == Money.franc(5)
+    @franc.should_not == Money.franc(6)
   end
+
+  it 'returns the correct currency' do
+    @franc.currency.should == :CHF
+  end 
 
 end  
 
