@@ -1,5 +1,5 @@
 require './money'
-describe Money do
+describe Money, 'dollar' do
   before :all do
     @dollar = Money.dollar 5
   end
@@ -17,9 +17,13 @@ describe Money do
   it 'returns the correct currency' do
     @dollar.currency.should be :USD
   end 
+
+  it 'correctly adds dollars' do
+    @dollar.plus(Money.dollar(5)).should == Money.dollar(10)
+  end
 end
 
-describe Money do
+describe Money, 'franc' do
   before :all do
     @franc = Money.franc 5
   end
