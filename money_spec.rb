@@ -1,7 +1,5 @@
-require './dollar'
-require './franc'
-
-describe Dollar do
+require './money'
+describe Money do
   before :all do
     @dollar = Money.dollar 5
   end
@@ -21,7 +19,7 @@ describe Dollar do
   end 
 end
 
-describe Franc do
+describe Money do
   before :all do
     @franc = Money.franc 5
   end
@@ -42,7 +40,7 @@ describe Franc do
 
 end  
 
-describe Dollar, Franc do
+describe Money do
   it 'should distinguish dollars from francs' do
     Money.dollar(5).should_not == Money.franc(5)
   end
