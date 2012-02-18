@@ -1,4 +1,4 @@
-class Money
+class Money 
   attr_accessor :amount, :currency
   def initialize(amount, currency)
     @amount = amount
@@ -10,7 +10,7 @@ class Money
   end
 
   def plus(money)
-    Money.new money.amount + @amount, @currency 
+    Sum.new self, money 
   end
 
   def times(multiplier)
@@ -23,5 +23,10 @@ class Money
 
   def self.franc(amount)
     Money.new amount, :CHF
+  end
+
+  def reduce(bank, to)
+    return self if @currency == to
+    Money.new (@amount * bank.get_rate(@currency, to)), to 
   end
 end
