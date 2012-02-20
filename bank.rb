@@ -5,7 +5,7 @@ class Bank
   end
 
   def reduce(expression, currency)
-    expression.reduce self, currency
+    expression.reduce(self, currency)
   end
 
   def add_rate(from , to, rate)

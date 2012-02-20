@@ -2,11 +2,11 @@ require './sum'
 require './bank'
 require './money'
 describe Money, 'dollar' do
-  before :all do
-    @dollar = Money.dollar 5
+  before :each do
+    @dollar = Money.dollar(5)
   end
 
-  it 'correctly multiplies by anything' do
+  it 'correctly multiplies by numbers' do
     @dollar.times(2).should == Money.dollar(10)
     @dollar.times(3).should == Money.dollar(15) 
   end
@@ -22,8 +22,8 @@ describe Money, 'dollar' do
 end
 
 describe Bank do
-  before :all do
-    @dollar = Money.dollar 5
+  before :each do
+    @dollar = Money.dollar(5)
     @bank = Bank.new
   end
   
@@ -32,7 +32,7 @@ describe Bank do
   end
 
   it 'correctly reduces dollar sums' do
-    sum = @dollar.plus @dollar 
+    sum = @dollar.plus(@dollar) 
     @bank.reduce(sum, :USD).should == Money.dollar(10)
     sum = @dollar.plus Money.dollar(10)
     @bank.reduce(sum, :USD).should == Money.dollar(15)
@@ -43,7 +43,7 @@ describe Bank do
     @bank.reduce(sum, :USD).should == Money.dollar(10)
   end
   it 'correctly adds rates' do
-    @bank.add_rate :USD, :LEI, 4
+    @bank.add_rate(:USD, :LEI, 4)
     @bank.get_rate(:USD, :LEI).should == 4
     @bank.get_rate(:LEI, :USD).should == 0.25 
   end
@@ -51,7 +51,7 @@ end
 
 describe Sum do
   it 'creates a sum' do
-    dollar = Money.dollar 5
+    dollar = Money.dollar(5)
     sum = dollar.plus(dollar)
     sum.augend.should == Money.dollar(5) 
     sum.addend.should == Money.dollar(5)
@@ -59,11 +59,11 @@ describe Sum do
 end
 
 describe Money, 'franc' do
-  before :all do
-    @franc = Money.franc 5
+  before :each do
+    @franc = Money.franc(5)
   end
  
-  it 'correctly multiplies by anything' do 
+  it 'correctly multiplies by numbers' do 
     @franc.times(2).should == Money.franc(10)
     @franc.times(3).should == Money.franc(15) 
   end
@@ -83,5 +83,4 @@ describe Money do
   it 'should distinguish dollars from francs' do
     Money.dollar(5).should_not == Money.franc(5)
   end
-  
 end 
